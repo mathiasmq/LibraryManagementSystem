@@ -27,6 +27,7 @@ public class ConsoleUI {
                 case 1 -> borrowBook();
                 case 2 -> returnBook();
                 case 3 -> showLoans();
+                case 4 -> registerMember();
                 case 0 -> running = false;
                 default -> IO.println("Invalid choice. Please try again.");
             }
@@ -39,6 +40,7 @@ public class ConsoleUI {
         IO.println("1. Borrow a book");
         IO.println("2. Return a book");
         IO.println("3. Show all loans");
+        IO.println("4. register a new member");
         IO.println("0. Exit");
         IO.println();
     }
@@ -112,4 +114,32 @@ public class ConsoleUI {
             IO.println(loan);
         }
     }
+
+    //User story 1:
+    //som bibliotekar ønsker jeg at registrere en ny låner med lånernummer,
+    // så låneren kan låne materialer på biblioteket. (Kan godt slettes igen, bare for overblik)
+
+
+    //Lader bibliotekaren registrere en ny låner:
+    private void registerMember(){
+        IO.println();
+        IO.println("--- Register a New member ---");
+
+        //Modtager navnet fra brugeren:
+        String name = IO.readln("Enter name: ");
+
+        //Modtager lånernummeret fra brugeren:
+        int memberId = Integer.parseInt(IO.readln("Enter member ID: "));
+
+        //Opretter et nyt medlem med navn og lånernummer:
+        Member member = new Member(name, memberId);
+
+        //Tilføjer medlemmet til biblioteket:
+        library.addMember(member);
+
+        IO.println();
+        IO.println("Member successfully registered: " + member);
+
+    }
+
 }
