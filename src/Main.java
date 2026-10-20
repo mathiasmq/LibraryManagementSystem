@@ -7,9 +7,18 @@ void main() {
     ConsoleUI consoleUI = new ConsoleUI(library);
 
 // Her opretter vi bøgerne
-    Book book1 = new Book("Allan B. Downey", "Think Java", "9781492072508", 1);
-    Book book2 = new Book("Rachel Cusk", "Omrids", "9788763851664", 2);
-    Book book3 = new Book("Yuval Noah Harari", "Sapiens", "9780062316097", 3);
+    Book book1 = new Book("9781492072508", "Think Java", "Allan B. Downey", 1, 150);
+    Book book2 = new Book("9788763851664", "Omrids", "Rachel Cusk", 2, 200);
+    Book book3 = new Book("9780062316097", "Sapiens", "Yuval Noah Harari", 3, 400);
+
+    Movie movie1 = new Movie("5701234567890", "Digger", "Legendary Pictures", 129, "Alejandro G. Iñárritu");
+    Movie movie2 = new Movie("5701234567899", "Dobbeltfejl", "Nordisk Film", 105, "Amalie Næsby Fick");
+
+    VideoGame videoGame1 = new VideoGame("5701234567892", "Minecraft", "Mojang Studios", "Microsoft");
+    VideoGame videoGame2 = new VideoGame("5701234567893", "World of Warcraft", " Blizzard Entertainement", "Vivendi Universal" );
+
+    AudioBook audioBook1 = new AudioBook("9781492072505", "Ringenes Herre: Eventyret om ringen", "Tolkien", 1260);
+    AudioBook audioBook2 = new AudioBook("9781492072504", "Harry Potter: De vises sten", "J.K. Rowling", 600);
 
 // Her opretter vi medlemmerne
     Member member1 = new Member("Thorkild Hansen", 111);
