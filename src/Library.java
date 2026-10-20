@@ -4,13 +4,19 @@ import java.util.ArrayList;
 public class Library {
     // Opretter ArrayLists til at holde styr på bibliotekets bøger, medlemmer og lån
     private ArrayList<Book> books = new ArrayList<>();
+    private ArrayList<Resource> resources = new ArrayList<>();
     private ArrayList<Member> members = new ArrayList<>();
     private ArrayList<Loan> loans = new ArrayList<>();
+
 
 // Setters
 // Tilføjer en bog til bibliotekets liste over bøger
     public void addBook(Book book) {
         books.add(book);
+    }
+//Tilføjer et materiale til bibliotekets liste over materialer
+    public void addResource(Resource resource){
+        resources.add(resource);
     }
 
 // Tilføjer et medlem til bibliotekets liste over medlemmer
@@ -58,6 +64,17 @@ public class Library {
         }
 
     // Returnerer null hvis der ikke findes en bog med det ID
+        return null;
+    }
+
+    // Finder et bestemt materiale ud fra dets identifier (ISBN eller EAN)
+    public Resource getResource(String identifier){
+        for(Resource resource : resources) {
+            if(identifier.equals(resource.getIdentifier())){
+
+            }
+        }
+        //retunerer null hvis der ikke findes et materiale med et identifier
         return null;
     }
 
