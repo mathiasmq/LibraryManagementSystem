@@ -1,31 +1,31 @@
 import java.util.ArrayList;
 
 public class ConsoleUI {
-// Gemmer biblioteket som ConsoleUI skal arbejde med
+    // Gemmer biblioteket som ConsoleUI skal arbejde med
     private Library library;
 
-// Tilføjer library til konstruktøren
+    // Tilføjer library til konstruktøren
     public ConsoleUI(Library library) {
         this.library = library;
     }
 
-// Starter ConsoleUI
+    // Starter ConsoleUI
     public void run() {
         boolean running = true;
 
-    // Forsætter med at vise menuen så længe programmet kører
+        // Forsætter med at vise menuen så længe programmet kører
         while (running) {
 
-        // Viser menuen til brugeren
+            // Viser menuen til brugeren
             showMenu();
 
-        // Modtager valg fra brugeren
+            // Modtager valg fra brugeren
             int choice = Integer.parseInt(IO.readln("Choose an option: "));
 
-        // Bestemmer hvad der skal ske ud fra brugerens valg
+            // Bestemmer hvad der skal ske ud fra brugerens valg
             switch (choice) {
-                case 1 -> borrowBook();
-                case 2 -> returnBook();
+                case 1 -> borrowResource();
+                case 2 -> returnResource();
                 case 3 -> showLoans();
                 case 4 -> registerMember();
                 case 0 -> running = false;
@@ -34,94 +34,97 @@ public class ConsoleUI {
         }
     }
 
-// Viser de forskellige valgmuligheder i Menu
+    // Viser de forskellige valgmuligheder i Menu
     private void showMenu() {
         IO.println();
-        IO.println("1. Borrow a book");
-        IO.println("2. Return a book");
-        IO.println("3. Show all loans");
-        IO.println("4. register a new member");
+        IO.println("1. Borrow a material");
+        IO.println("2. Return a material");
+        IO.println("3. Show loans for a member");
+        IO.println("4. Register a new member");
         IO.println("0. Exit");
         IO.println();
     }
 
-// Lader brugeren låne en bog ved hjælp af loanBook fra Library-klassen
-    private void borrowBook() {
+    // Lader brugeren låne et materiale ved hjælp af loan fra Library-klassen
+    private void borrowResource() {
 
         IO.println();
-        IO.println("--- Borrow a Book ---");
+        IO.println("--- Borrow a Material ---");
 
-    // Modtager bogens ID fra brugeren
-        int bookId = Integer.parseInt(
-                IO.readln("Enter book ID: ")
-        );
 
-    // Modtager medlemmets ID fra brugeren
+        // Modtager materialets identifier (ISBN eller EAN) fra brugeren
+        String identifier = IO.readln("Enter ISBN or EAN: ");
+
+
+        // Modtager medlemmets ID fra brugeren
         int memberId = Integer.parseInt(
-                IO.readln("Enter member id: ")
-        );
+                IO.readln("Enter member id: "));
 
         IO.println();
 
-    // Bruger metoden fra Library-klassen ved at sende bog og medlems ID
-        library.loanBook(bookId, memberId);
-    }
-
-// Lader brugeren aflevere en bog
-    private void returnBook() {
+        // Forsøger at låne materialet og gemmer resultatet
+        LoanResult result = library.loan(identifier, memberId);
 
         IO.println();
-        IO.println("--- Return a Book ---");
 
-    // Modtager bog ID fra brugeren
-        int bookId = Integer.parseInt(IO.readln("Enter book ID: "));
 
-    // Forsøger at aflevere bogen gennem Library metoden returnBook og gemmer om det lykkedes
-        boolean returned = library.returnBook(bookId);
-
-    // Fortæller brugeren om afleveringen lykkedes
-        if (returned) {
-            IO.println();
-            IO.println("Book successfully returned.");
-        } else {
-            IO.println();
-            IO.println("A mistake has been made.");
+        // Viser en besked til brugeren ud fra resultatet
+        switch (result) {
+            case SUCCESS -> IO.println("Material successfully borrowed.");
+            case MEMBER_NOT_FOUND -> IO.println("The member is not registered in the library.");
+            case RESOURCE_NOT_FOUND -> IO.println("The material is not registered in the library.");
+            case ALREADY_LOANED -> IO.println("The material is already on loan.");
         }
     }
 
-// Lader brugeren se alle lån for et bestemt medlem
+    // Lader brugeren aflevere et materiale
+    private void returnResource() {
+
+        IO.println();
+        IO.println("--- Return a Material ---");
+
+        // Modtager materialets identifier (ISBN eller EAN) fra brugeren
+        String identifier = IO.readln("Enter ISBN or EAN: ");
+
+        // Forsøger at aflevere materialet gennem Library metoden returnLoan og gemmer om det lykkedes
+        boolean returned = library.returnLoan(identifier);
+
+        // Fortæller brugeren om afleveringen lykkedes
+        IO.println();
+        if (returned) {
+            IO.println("Material successfully returned.");
+        } else {
+            IO.println("The material could not be returned. Check that it exists and is on loan.");
+        }
+    }
+
+    // Lader brugeren se alle lån for et bestemt medlem
     private void showLoans() {
 
         IO.println();
         IO.println("--- Show Member Loans ---");
 
-    // Modtager member ID fra brugeren
+        // Modtager member ID fra brugeren
         int memberId = Integer.parseInt(IO.readln("Enter member ID: "));
 
-    // Finder alle lån for medlemmets gennem Library metoden og gemmer dem i en liste
+        // Finder alle lån for medlemmet gennem Library metoden og gemmer dem i en liste
         ArrayList<Loan> loans = library.findLoansByMemberId(memberId);
 
-    // Tjekker om array listen er tom og fortæller brugeren hvis der ikke er nogle aktive lån
+        // Tjekker om array listen er tom og fortæller brugeren hvis der ikke er nogle aktive lån
         if (loans.isEmpty()) {
             IO.println();
             IO.println("No active loans found.");
-        } else {
-            IO.println();
         }
 
-    // Går igennem array listen og viser hvert lån
+        // Går igennem array listen og viser hvert lån
         for (Loan loan : loans) {
             IO.println(loan);
         }
     }
 
     //User story 1:
-    //som bibliotekar ønsker jeg at registrere en ny låner med lånernummer,
-    // så låneren kan låne materialer på biblioteket. (Kan godt slettes igen, bare for overblik)
-
-
     //Lader bibliotekaren registrere en ny låner:
-    private void registerMember(){
+    private void registerMember() {
         IO.println();
         IO.println("--- Register a New member ---");
 
