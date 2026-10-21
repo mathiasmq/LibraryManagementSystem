@@ -1,49 +1,50 @@
 import java.time.LocalDate;
 
 public class Loan {
-// Gemmer bogen, medlemmet og datoen for lån
-    private final Book book;
+
+    // Gemmer materialet, medlemmet og datoen for lånet
+    private final Resource resource;
     private final Member member;
     private final LocalDate borrowedDate;
 
-// Tilføjer book, member og borrowedDate til konstruktøren
-    public Loan(Book book, Member member, LocalDate borrowedDate) {
-        this.book = book;
+    // Tilføjer resource, member og borrowedDate til konstruktøren
+    public Loan(Resource resource, Member member, LocalDate borrowedDate) {
+        this.resource = resource;
         this.member = member;
         this.borrowedDate = borrowedDate;
     }
 
-// Getters
-// Bruges til at hente den bog som er blevet lånt
-    public Book getBook() {
-        return book;
+    // Henter det materiale som er blevet lånt
+    public Resource getResource() {
+        return resource;
     }
 
-// Henter det medlem som har lånt bogen
+    // Henter det medlem som har lånt materialet
     public Member getMember() {
         return member;
     }
 
-// Finder datoen for aflevering, der bliver lagt 14 dage til dags dato
+    // Finder afleveringsdatoen ved at lægge 14 dage til lånedatoen
     public LocalDate getDueDate() {
         return borrowedDate.plusDays(14);
     }
 
-// Tjekker om afleveringsdatoen er overskredet
+    // Tjekker om afleveringsdatoen er overskredet
     public boolean isOverdue() {
         LocalDate today = LocalDate.now();
-        return LocalDate.now().isAfter(getDueDate());
+        return today.isAfter(getDueDate());
     }
 
-// Retunerer information om lånet som tekst
+    // Returnerer information om lånet som tekst
     @Override
     public String toString() {
         String status = isOverdue() ? "Overdue" : "On loan";
+
         return String.format("""
-            %s
-            %s
-            Due date: %s
-            Status: %s
-            """, book, member, getDueDate(), status);
+                %s
+                %s
+                Due date: %s
+                Status: %s
+                """, resource, member, getDueDate(), status);
     }
 }
