@@ -1,12 +1,12 @@
 public class Resource {
-    private String identifier;
-    private String title;
-    private String creator;
+    private final String identifier;
+    private final String title;
+    private final String creator;
 
 public Resource (String identifier, String title, String creator) {
     this.identifier = identifier;
     this.title = title;
-    this.creator = title;
+    this.creator = creator;
 
 }
 
