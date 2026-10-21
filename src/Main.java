@@ -30,10 +30,20 @@ void main() {
     library.addMember(member2);
     library.addMember(member3);
 
-// Tilføjer bøgerne til biblioteket
-    library.addBook(book1);
-    library.addBook(book2);
-    library.addBook(book3);
+// Tilføjer alle materialerne til biblioteket
+// (polymorfi alle 4 matrialer arver fra Resource med samme metode hvis det giver mening?)
+    library.addResource(book1);
+    library.addResource(book2);
+    library.addResource(book3);
+
+    library.addResource(movie1);
+    library.addResource(movie2);
+
+    library.addResource(videoGame1);
+    library.addResource(videoGame2);
+
+    library.addResource(audioBook1);
+    library.addResource(audioBook2);
 
 // Starter ConesoleUI så brugerne kan bruge vores system
     consoleUI.run();

@@ -2,66 +2,61 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Library {
-    // Opretter ArrayLists til at holde styr på bibliotekets bøger, medlemmer og lån
-    private ArrayList<Book> books = new ArrayList<>();
+    // Opretter ArrayLists til at holde styr på bibliotekets materialer, medlemmer og lån
+    private ArrayList<Resource> resources = new ArrayList<>();
     private ArrayList<Member> members = new ArrayList<>();
     private ArrayList<Loan> loans = new ArrayList<>();
 
-// Setters
-// Tilføjer en bog til bibliotekets liste over bøger
-    public void addBook(Book book) {
-        books.add(book);
+    // Setters
+// Tilføjer et materiale til bibliotekets liste over materialer
+    public void addResource(Resource resource) {
+        resources.add(resource);
     }
 
-// Tilføjer et medlem til bibliotekets liste over medlemmer
+    // Tilføjer et medlem til bibliotekets liste over medlemmer
     public void addMember(Member member) {
         members.add(member);
     }
 
-// Getters
-// Henter array listen med alle vores bøger i biblioteket
-    public ArrayList<Book> getBooks() {
-        return books;
-    }
-
+    // Getters
 // Henter array listen med alle medlemmer i biblioteket
     public ArrayList<Member> getMembers() {
         return members;
     }
 
-// Henter array listen med alle aktive lån
+    // Henter array listen med alle aktive lån
     public ArrayList<Loan> getLoans() {
         return loans;
     }
 
-// Printers
-// Går igennem array listen og printer alle bøger i biblioteket
-    public void printBooks() {
-        for (Book book : books) {
-            IO.println(book);
+    // Printers
+// Går igennem array listen og printer alle materialer i biblioteket
+    public void printResources() {
+        for (Resource resource : resources) {
+            IO.println(resource);
         }
     }
 
-// Går igennem array listen og printer alle medlemmer i biblioteket
+    // Går igennem array listen og printer alle medlemmer i biblioteket
     public void printMembers() {
         for (Member member : members) {
             IO.println(member);
         }
     }
 
-// Finder en bestemt bog ud dens ID
-    public Book getBook(int bookId) {
-        for (Book book : books) {
-            if (bookId == book.getBookId()) {
-                return book;
+    // Finder et bestemt materiale ud fra dets identifier (ISBN eller EAN)
+    public Resource getResource(String identifier) {
+        for (Resource resource : resources) {
+            if (identifier.equals(resource.getIdentifier())) {
+                return resource;
             }
         }
 
-    // Returnerer null hvis der ikke findes en bog med det ID
+        // Returnerer null hvis der ikke findes et materiale med det identifier
         return null;
     }
 
-// Finder et bestemt medlem ud fra deres medlems ID
+    // Finder et bestemt medlem ud fra deres medlems ID
     public Member getMember(int memberId) {
         for (Member member : members) {
             if (memberId == member.getMemberId()) {
@@ -69,96 +64,79 @@ public class Library {
             }
         }
 
-    // Returnerer null hvis der ikke findes et medlem med det ID
+        // Returnerer null hvis der ikke findes et medlem med det ID
         return null;
     }
 
-// Forsøger at låne en bog til medlem ud fra deres bog ID og medlems ID
-    public boolean loanBook(int bookId, int memberId) {
-        Book book = getBook(bookId);
+    // Forsøger at låne et materiale til et medlem og returnerer resultatet
+    public LoanResult loan(String identifier, int memberId) {
         Member member = getMember(memberId);
 
-    // Stopper udlånnet hvis medlemmet ikke findes
+        // Stopper hvis medlemmet ikke findes
         if (member == null) {
-            // IO.println("The member ID doesn't exist");
-            return false;
+            return LoanResult.MEMBER_NOT_FOUND;
         }
 
-    // Stopper hvis bogen ikke findes
-        if (book == null) {
-            //IO.println("The book ID doesn't exist");
-            return false;
+        Resource resource = getResource(identifier);
+
+        // Stopper hvis materialet ikke findes
+        if (resource == null) {
+            return LoanResult.RESOURCE_NOT_FOUND;
         }
 
-    // Sender medlem og bog videre for at oprette et lån
-        return loanBook(book, member);
-    }
-
-// Opretter et lån hvis bogen ikke allerede er lånt
-    private boolean loanBook(Book book, Member member) {
-    // Går igennem lånene for at se om nogen allerede har lånt bogen
+        // Stopper hvis materialet allerede er lånt ud
         for (Loan loan : loans) {
-            if (loan.getBook() == book) {
-                IO.println("This book is already borrowed and cannot be loaned.");
-                return false;
+            if (loan.getResource() == resource) {
+                return LoanResult.ALREADY_LOANED;
             }
         }
 
-    // Opretter et nyt lån med dags dato
-        LocalDate borrowedDate = LocalDate.now();
-        Loan loan = new Loan(book, member, borrowedDate);
+        // Opretter et nyt lån med dags dato og tilføjer det til listen
+        Loan newLoan = new Loan(resource, member, LocalDate.now());
+        loans.add(newLoan);
 
-    // Tilføjer der nye lån til array listen med lån
-        loans.add(loan);
-
-    // Printer information for det nye lån
-        IO.println("Book successfully borrowed:");
-        IO.println(loan);
-
-    // Returnerer true hvis lånet lykkedes
-        return true;
+        return LoanResult.SUCCESS;
     }
 
-// Forsøger at aflevere en bog ud fra dens ID
-    public boolean returnBook(int bookId) {
-        Book book = getBook(bookId);
+    // Forsøger at aflevere et materiale ud fra dets identifier
+    public boolean returnLoan(String identifier) {
+        Resource resource = getResource(identifier);
 
-    // Den stopper hvis bogen ikke findes
-        if (book == null) {
+        // Stopper hvis materialet ikke findes
+        if (resource == null) {
             return false;
         }
 
-    // Finder bogens lån og fjerner det fra ArrayList
+        // Finder materialets lån og fjerner det fra listen
         for (Loan loan : loans) {
-            if (loan.getBook().getBookId() == bookId) {
+            if (loan.getResource() == resource) {
                 loans.remove(loan);
                 return true;
             }
         }
 
-    // Retunerer false hvis bogen ikke var lånt
+        // Returnerer false hvis materialet ikke var lånt ud
         return false;
     }
 
-// Finder alle lån der tilhører et bestemt medlem
+    // Finder alle lån der tilhører et bestemt medlem
     public ArrayList<Loan> findLoansByMemberId(int memberId) {
 
-    // Her opretter vi en ny ArrayList som er tom til de lån vi finder
+        // Her opretter vi en ny ArrayList som er tom til de lån vi finder
         ArrayList<Loan> foundLoans = new ArrayList<>();
 
-    // Går igennem alle aktive lån
+        // Går igennem alle aktive lån
         for (Loan loan : loans) {
 
-        // Tjekker om lånet tilhører det valgte medlem
+            // Tjekker om lånet tilhører det valgte medlem
             if (loan.getMember().getMemberId() == memberId) {
 
-            // Tilføjer lånet til array listen hvis medlems ID'et er korrekt
+                // Tilføjer lånet til array listen hvis medlems ID'et er korrekt
                 foundLoans.add(loan);
-
             }
         }
 
-    // Returnerer array listen med medlemmets lån
+        // Returnerer array listen med medlemmets lån
         return foundLoans;
     }
 }
