@@ -7,9 +7,9 @@ void main() {
     ConsoleUI consoleUI = new ConsoleUI(library);
 
 // Her opretter vi bøgerne
-    Book book1 = new Book("9781492072508", "Think Java", "Allan B. Downey", 1, 150);
-    Book book2 = new Book("9788763851664", "Omrids", "Rachel Cusk", 2, 200);
-    Book book3 = new Book("9780062316097", "Sapiens", "Yuval Noah Harari", 3, 400);
+    Book book1 = new Book("9781492072508", "Think Java", "Allan B. Downey", 150);
+    Book book2 = new Book("9788763851664", "Omrids", "Rachel Cusk", 200);
+    Book book3 = new Book("9780062316097", "Sapiens", "Yuval Noah Harari", 400);
 
     Movie movie1 = new Movie("5701234567890", "Digger", "Legendary Pictures", 129, "Alejandro G. Iñárritu");
     Movie movie2 = new Movie("5701234567899", "Dobbeltfejl", "Nordisk Film", 105, "Amalie Næsby Fick");
