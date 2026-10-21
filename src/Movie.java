@@ -3,16 +3,15 @@ public class Movie extends Resource {
     private String director;
 
     public Movie (String identifier, String title, String creator, int movieLength, String director) {
-        super (identifier, title, creator);
+        super(identifier, title, creator);
         this.movieLength = movieLength;
         this.director = director;
     }
 
-    public int getMovieLength () {
-        return movieLength;
-    }
 
-    public String getDirector() {
-        return director;
+    @Override
+    public String toString () {
+        return "EAN: " + getIdentifier() + "\nTitle: " + getTitle() + "\nProduction: " + getCreator() + "\n Length: " + movieLength + " minutes" + "\nDirector: " + director;
+
     }
 }
