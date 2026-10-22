@@ -14,8 +14,8 @@ void main() {
     Movie movie1 = new Movie("5701234567890", "Digger", "Legendary Pictures", 129, "Alejandro G. Iñárritu");
     Movie movie2 = new Movie("5701234567899", "Dobbeltfejl", "Nordisk Film", 105, "Amalie Næsby Fick");
 
-    VideoGame videoGame1 = new VideoGame("5701234567892", "Minecraft", "Mojang Studios", "Microsoft");
-    VideoGame videoGame2 = new VideoGame("5701234567893", "World of Warcraft", " Blizzard Entertainement", "Vivendi Universal" );
+    VideoGame videoGame1 = new VideoGame("5701234567892", "Minecraft", "Mojang Studios", "PC, mobile devices, console");
+    VideoGame videoGame2 = new VideoGame("5701234567893", "World of Warcraft", " Blizzard Entertainement", "PC" );
 
     AudioBook audioBook1 = new AudioBook("9781492072505", "Ringenes Herre: Eventyret om ringen", "Tolkien", 1260);
     AudioBook audioBook2 = new AudioBook("9781492072504", "Harry Potter: De vises sten", "J.K. Rowling", 600);
