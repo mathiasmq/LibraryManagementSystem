@@ -52,8 +52,8 @@ public class ConsoleUI {
         IO.println("--- Borrow a Material ---");
 
 
-        // Modtager materialets identifier (ISBN eller EAN) fra brugeren
-        String identifier = IO.readln("Enter ISBN or EAN: ");
+        // Modtager materialets title fra brugeren
+        String title = IO.readln("Enter title: ");
 
 
         // Modtager medlemmets ID fra brugeren
@@ -63,7 +63,7 @@ public class ConsoleUI {
         IO.println();
 
         // Forsøger at låne materialet og gemmer resultatet
-        LoanResult result = library.loan(identifier, memberId);
+        LoanResult result = library.loan(title, memberId);
 
         IO.println();
 
@@ -83,11 +83,11 @@ public class ConsoleUI {
         IO.println();
         IO.println("--- Return a Material ---");
 
-        // Modtager materialets identifier (ISBN eller EAN) fra brugeren
-        String identifier = IO.readln("Enter ISBN or EAN: ");
+        // Modtager materialets title fra brugeren
+        String title = IO.readln("Enter title: ");
 
         // Forsøger at aflevere materialet gennem Library metoden returnLoan og gemmer om det lykkedes
-        boolean returned = library.returnLoan(identifier);
+        boolean returned = library.returnLoan(title);
 
         // Fortæller brugeren om afleveringen lykkedes
         IO.println();
