@@ -44,10 +44,10 @@ public class Library {
         }
     }
 
-    // Finder et bestemt materiale ud fra dets identifier (ISBN eller EAN)
-    public Resource getResource(String identifier) {
+    // Finder et bestemt materiale ud fra dets titel
+    public Resource getResource(String title) {
         for (Resource resource : resources) {
-            if (identifier.equals(resource.getIdentifier())) {
+            if (title.equals(resource.getTitle())) {
                 return resource;
             }
         }
@@ -69,7 +69,7 @@ public class Library {
     }
 
     // Forsøger at låne et materiale til et medlem og returnerer resultatet
-    public LoanResult loan(String identifier, int memberId) {
+    public LoanResult loan(String title, int memberId) {
         Member member = getMember(memberId);
 
         // Stopper hvis medlemmet ikke findes
@@ -77,7 +77,7 @@ public class Library {
             return LoanResult.MEMBER_NOT_FOUND;
         }
 
-        Resource resource = getResource(identifier);
+        Resource resource = getResource(title);
 
         // Stopper hvis materialet ikke findes
         if (resource == null) {
@@ -98,9 +98,9 @@ public class Library {
         return LoanResult.SUCCESS;
     }
 
-    // Forsøger at aflevere et materiale ud fra dets identifier
-    public boolean returnLoan(String identifier) {
-        Resource resource = getResource(identifier);
+    // Forsøger at aflevere et materiale ud fra dets titel
+    public boolean returnLoan(String title) {
+        Resource resource = getResource(title);
 
         // Stopper hvis materialet ikke findes
         if (resource == null) {
