@@ -7,6 +7,12 @@ public class AudioBook extends Resource {
     }
 
 
+    // Henter lydbogens længde i minutter
+    public int getAudioBookLength() {
+        return audioBookLength;
+    }
+
+
     @Override
     public String toString () {
         return "ISBN: " + getIdentifier() + "\nTitle: " + getTitle() + "\nAuthor: " + getCreator() + "\nLength: " + audioBookLength + " minutes";
