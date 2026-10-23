@@ -6,6 +6,12 @@ public class VideoGame extends Resource {
         this.platform = platform;
     }
 
+    // Henter spillets platform
+    public String getPlatform() {
+        return platform;
+    }
+
+
     @Override
     public String toString () {
         return "EAN: " + getIdentifier() + "\nTitle: " + getTitle() + "\nCreator: " + getCreator() + "\nPlatform: " + platform;

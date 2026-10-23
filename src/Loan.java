@@ -24,6 +24,10 @@ public class Loan {
         return member;
     }
 
+    public LocalDate getBorrowedDate () {
+        return borrowedDate;
+    }
+
     // Finder afleveringsdatoen ved at lægge 14 dage til lånedatoen
     public LocalDate getDueDate() {
         return borrowedDate.plusDays(14);
