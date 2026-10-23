@@ -1,17 +1,26 @@
 public class Book extends Resource {
-// Vi gemmer bogens forfatter, titel, ISBN og ID
+
+    // Gemmer antallet af sider i bogen
     private int pages;
 
-// Tilføjer author, title, ISBN og ID til konstruktøren
+    // Konstruktør der gemmer bogens oplysninger
     public Book(String identifier, String title, String creator, int pages) {
         super(identifier, title, creator);
         this.pages = pages;
     }
 
+    // Getters
+    // Returnerer antallet af sider
+    public int getPages() {
+        return pages;
+    }
 
-// Retunerer bogens information
+    // Returnerer bogens information som tekst
     @Override
     public String toString() {
-        return "ISBN: " + getIdentifier() + "\nTitle: " + getTitle() + "\nAuthor: " + getCreator() + "\nPages: " + pages;
+        return "ISBN: " + getIdentifier()
+                + "\nTitle: " + getTitle()
+                + "\nAuthor: " + getCreator()
+                + "\nPages: " + pages;
     }
 }
