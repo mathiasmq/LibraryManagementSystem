@@ -34,7 +34,7 @@ public class BookTest {
         String creator = book2.getCreator();
         int pages = book2.getPages();
 
-        //
+        // Assert
         assertEquals("9788763851664", identifier);
         assertEquals("Omrids", title);
         assertEquals("Rachel Cusk", creator);
