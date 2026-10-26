@@ -6,6 +6,11 @@ public class Library {
     private ArrayList<Resource> resources = new ArrayList<>();
     private ArrayList<Member> members = new ArrayList<>();
     private ArrayList<Loan> loans = new ArrayList<>();
+    private LoanPolicy loanPolicy;
+
+    public Library (LoanPolicy loanPolicy) {
+        this.loanPolicy = loanPolicy;
+    }
 
     // Setters
 // Tilføjer et materiale til bibliotekets liste over materialer
@@ -83,6 +88,10 @@ public class Library {
         if (resource == null) {
             return LoanResult.RESOURCE_NOT_FOUND;
         }
+//
+//        if (!loanPolicy.canLoan()) {
+//            return LoanResult.CanNotLoan;
+//        }
 
         // Stopper hvis materialet allerede er lånt ud
         for (Loan loan : loans) {
