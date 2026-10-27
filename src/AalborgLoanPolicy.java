@@ -4,14 +4,9 @@ import java.util.ArrayList;
 public class AalborgLoanPolicy implements LoanPolicy{
 
     private final int maximum = 3;
-    private ArrayList<Loan> loans;
-
-    public AalborgLoanPolicy (ArrayList<Loan> loans) {
-        this.loans = loans;
-    }
 
     @Override
-    public boolean canLoan (Resource resource) {
+    public boolean canLoan (Resource resource, ArrayList<Loan> loans, Member member) {
             int count = 0;
             for (Loan loan : loans) {
                 Resource currentResource = loan.getResource();
@@ -26,8 +21,8 @@ public class AalborgLoanPolicy implements LoanPolicy{
     }
 
     @Override
-    public LocalDate calculateDueDate (Resource resource) {
-        return LocalDate.now().plusDays(30);
+    public LocalDate calculateDueDate (Resource resource, LocalDate borrowedDate) {
+        return borrowedDate.plusDays(30);
 
     }
 }

@@ -1,7 +1,7 @@
  void main() {
 
 // Vi opretter biblioteket
-     LoanPolicy loanPolicy = new StandardLoanPolicy();
+     LoanPolicy loanPolicy = new BornholmLoanPolicy();
     Library library = new Library(loanPolicy);
 
 
@@ -15,6 +15,9 @@
 
     Movie movie1 = new Movie("5701234567890", "Digger", "Legendary Pictures", 129, "Alejandro G. Iñárritu");
     Movie movie2 = new Movie("5701234567899", "Dobbeltfejl", "Nordisk Film", 105, "Amalie Næsby Fick");
+     Movie movie3 = new Movie("5701234567898", "Den fremmede", "Nordisk Film", 110, "yyy");
+     Movie movie4 = new Movie("5701234567897", "Druk", "Nordisk Film", 130, "Thomas Vinterberg");
+
 
     VideoGame videoGame1 = new VideoGame("5701234567892", "Minecraft", "Mojang Studios", "PC, mobile devices, console");
     VideoGame videoGame2 = new VideoGame("5701234567893", "World of Warcraft", "Blizzard Entertainement", "PC");
