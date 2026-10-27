@@ -1,7 +1,9 @@
  void main() {
 
 // Vi opretter biblioteket
-    Library library = new Library();
+     LoanPolicy loanPolicy = new StandardLoanPolicy();
+    Library library = new Library(loanPolicy);
+
 
 // Her opretter vi ConsoleUI og giver den adgang til biblioteket
     ConsoleUI consoleUI = new ConsoleUI(library);

@@ -88,7 +88,7 @@ public class Library {
         if (resource == null) {
             return LoanResult.RESOURCE_NOT_FOUND;
         }
-//
+
 //        if (!loanPolicy.canLoan()) {
 //            return LoanResult.CanNotLoan;
 //        }
