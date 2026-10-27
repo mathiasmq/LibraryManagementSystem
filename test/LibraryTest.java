@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class LibraryTest {
+    private LoanPolicy loanPolicy;
     private Library library;
     private Book book;
     private Member member;
@@ -14,7 +15,8 @@ public class LibraryTest {
 
     @BeforeEach
     void setup(){
-        library = new Library();
+        loanPolicy = new StandardLoanPolicy();
+        library = new Library(loanPolicy);
         book = new Book("9781492072508", "Think Java", "Allan B. Downey", 150);
         member = new Member("Thorkild Hansen", 111);
         library.addMember(member);

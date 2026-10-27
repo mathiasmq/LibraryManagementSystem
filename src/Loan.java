@@ -6,12 +6,14 @@ public class Loan {
     private final Resource resource;
     private final Member member;
     private final LocalDate borrowedDate;
+    private final LocalDate dueDate;
 
     // Tilføjer resource, member og borrowedDate til konstruktøren
-    public Loan(Resource resource, Member member, LocalDate borrowedDate) {
+    public Loan(Resource resource, Member member, LocalDate borrowedDate, LocalDate dueDate) {
         this.resource = resource;
         this.member = member;
         this.borrowedDate = borrowedDate;
+        this.dueDate = dueDate;
     }
 
     // Henter det materiale som er blevet lånt
@@ -30,7 +32,7 @@ public class Loan {
 
     // Finder afleveringsdatoen ved at lægge 14 dage til lånedatoen
     public LocalDate getDueDate() {
-        return borrowedDate.plusDays(14);
+        return dueDate;
     }
 
     // Tjekker om afleveringsdatoen er overskredet

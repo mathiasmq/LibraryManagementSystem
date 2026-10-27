@@ -88,10 +88,8 @@ public class Library {
         if (resource == null) {
             return LoanResult.RESOURCE_NOT_FOUND;
         }
-//
-//        if (!loanPolicy.canLoan()) {
-//            return LoanResult.CanNotLoan;
-//        }
+
+
 
         // Stopper hvis materialet allerede er lånt ud
         for (Loan loan : loans) {
@@ -100,8 +98,15 @@ public class Library {
             }
         }
 
+        if (!loanPolicy.canLoan(resource, loans, member)) {
+            return LoanResult.CAN_NOT_LOAN;
+        }
+
+        LocalDate today = LocalDate.now();
+        LocalDate dueDate = loanPolicy.calculateDueDate(resource, today);
+
         // Opretter et nyt lån med dags dato og tilføjer det til listen
-        Loan newLoan = new Loan(resource, member, LocalDate.now());
+        Loan newLoan = new Loan(resource, member, today, dueDate);
         loans.add(newLoan);
 
         return LoanResult.SUCCESS;
