@@ -15,7 +15,7 @@ public class MovieTest {
                 148,
                 "Christopher Nolan"
         );
-        ;
+
         // Act
         String result = movie.toString();
 

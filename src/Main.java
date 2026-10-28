@@ -1,7 +1,7 @@
  void main() {
 
 // Vi opretter biblioteket
-     LoanPolicy loanPolicy = new BornholmLoanPolicy();
+    LoanPolicy loanPolicy = new BornholmLoanPolicy();
     Library library = new Library(loanPolicy);
 
 
