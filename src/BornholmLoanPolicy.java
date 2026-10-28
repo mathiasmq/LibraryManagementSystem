@@ -14,6 +14,6 @@ public class BornholmLoanPolicy implements LoanPolicy {
         if (resource instanceof AudioBook) {
             return borrowedDate.plusDays(14);
         }
-return borrowedDate.plusDays(30);
+        return borrowedDate.plusDays(30);
     }
 }
