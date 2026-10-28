@@ -73,6 +73,7 @@ public class ConsoleUI {
             case SUCCESS -> IO.println("Material successfully borrowed.");
             case MEMBER_NOT_FOUND -> IO.println("The member is not registered in the library.");
             case RESOURCE_NOT_FOUND -> IO.println("The material is not registered in the library.");
+            case CAN_NOT_LOAN -> IO.println("Sorry. You can only borrow 3 movies or video games at a time");
             case ALREADY_LOANED -> IO.println("The material is already on loan.");
         }
     }
