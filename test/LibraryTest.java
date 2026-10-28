@@ -1,4 +1,5 @@
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
@@ -81,8 +82,6 @@ public class LibraryTest {
 
         //Assert
         assertEquals(LoanResult.SUCCESS, loanResult);
-
-
     }
 
     @Test
@@ -90,6 +89,36 @@ public class LibraryTest {
         boolean result = library.returnLoan("Think Java");
         assertFalse(result);
     }
+
+    @Nested
+    class LibraryTest2 {
+
+        @Test
+        public void testLibraryCallsCanLoanAndCalculateDueDate() {
+            //Arrange
+            TestDoubleLoanPolicy testDouble = new TestDoubleLoanPolicy();
+            Library library = new Library(testDouble);
+            Book book = new Book("9781492072508", "Think Java", "Allan B. Downey", 150);
+            Member member = new Member("Thorkild Hansen", 111);
+            library.addMember(member);
+            library.addResource(book);
+
+            //Act
+            LoanResult loanResult = library.loan("Think Java", 111);
+            boolean canLoanCalled = testDouble.canLoanCalled;
+            boolean calculateDueDateCalled = testDouble.calculateDueDateCalled;
+
+            //Assert
+            assertEquals(LoanResult.SUCCESS, loanResult);
+            assertTrue(canLoanCalled);
+            assertTrue(calculateDueDateCalled);
+
+        }
+    }
+
+
+
+
 
 
 
