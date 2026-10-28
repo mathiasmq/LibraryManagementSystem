@@ -1,7 +1,7 @@
  void main() {
 
 // Vi opretter biblioteket
-     LoanPolicy loanPolicy = new AalborgLoanPolicy();
+    LoanPolicy loanPolicy = new BornholmLoanPolicy();
     Library library = new Library(loanPolicy);
 
 
@@ -43,8 +43,6 @@
 
     library.addResource(movie1);
     library.addResource(movie2);
-    library.addResource(movie3);
-    library.addResource(movie4);
 
     library.addResource(videoGame1);
     library.addResource(videoGame2);
