@@ -1,11 +1,13 @@
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 public class Library {
     // Opretter ArrayLists til at holde styr på bibliotekets materialer, medlemmer og lån
-    private ArrayList<Resource> resources = new ArrayList<>();
-    private ArrayList<Member> members = new ArrayList<>();
-    private ArrayList<Loan> loans = new ArrayList<>();
+    private List<Resource> resources = new ArrayList<>();
+    private List<Member> members = new ArrayList<>();
+    private List<Loan> loans = new ArrayList<>();
     private LoanPolicy loanPolicy;
 
     public Library (LoanPolicy loanPolicy) {
@@ -25,12 +27,12 @@ public class Library {
 
     // Getters
 // Henter array listen med alle medlemmer i biblioteket
-    public ArrayList<Member> getMembers() {
+    public List<Member> getMembers() {
         return members;
     }
 
     // Henter array listen med alle aktive lån
-    public ArrayList<Loan> getLoans() {
+    public List<Loan> getLoans() {
         return loans;
     }
 
