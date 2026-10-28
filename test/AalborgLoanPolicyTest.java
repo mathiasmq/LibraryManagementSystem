@@ -103,7 +103,7 @@ public class AalborgLoanPolicyTest {
 
     // Test 5: due date is 30 days after the borrowed date
     @Test
-    void calculateDueDateReturnsDate30DaysLater() {
+    void calculateDueDate30DaysLater() {
         LocalDate result =
                 policy.calculateDueDate(createMovie("M001"), borrowedDate);
 
