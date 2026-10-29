@@ -15,7 +15,7 @@ public class StandardLoanPolicyTest {
         StandardLoanPolicy policy = new StandardLoanPolicy();
         Book book = new Book("9781492072508", "Think Java", "Allan B. Downey", 150);
         Member member = new Member("Thorkild Hansen", 111);
-        ArrayList<Loan> loans = new ArrayList<>();
+        List<Loan> loans = new ArrayList<>();
 
         //Act
         boolean result = policy.canLoan(book, loans, member);
