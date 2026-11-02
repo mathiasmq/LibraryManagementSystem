@@ -63,6 +63,18 @@ public class Library {
         return null;
     }
 
+    // Finder et bestemt materiale ud fra dets identifier (ISBN/EAN)
+    public Resource getResourceByIdentifier(String identifier) {
+        for (Resource resource : resources) {
+            if (identifier.equals(resource.getIdentifier())) {
+                return resource;
+            }
+        }
+
+        // Returnerer null hvis der ikke findes et materiale med det identifier
+        return null;
+    }
+
     // Finder et bestemt medlem ud fra deres medlems ID
     public Member getMember(int memberId) {
         for (Member member : members) {
