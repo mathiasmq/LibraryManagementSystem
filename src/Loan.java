@@ -9,7 +9,7 @@ public class Loan {
     private final LocalDate dueDate;
 
     // Tilføjer resource, member og borrowedDate til konstruktøren
-    public Loan(Resource resource, Member member, LocalDate borrowedDate, LocalDate dueDate) {
+    public Loan(Resource resource, Member member, LocalDate borrowedDate, LocalDate dueDate, Resource resourceIdentifier) {
         this.resource = resource;
         this.member = member;
         this.borrowedDate = borrowedDate;
