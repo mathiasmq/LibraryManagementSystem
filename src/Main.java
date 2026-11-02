@@ -1,5 +1,7 @@
  void main() {
 
+     LibraryLoader libraryLoader = new LibraryLoader();
+
 // Vi opretter biblioteket
     LoanPolicy loanPolicy = new StandardLoanPolicy();
     Library library = new Library(loanPolicy);
