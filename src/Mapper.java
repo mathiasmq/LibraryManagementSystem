@@ -8,7 +8,7 @@ public class Mapper {
     // ---------- Member: memberId, name ----------
 
     //Konverterer en CSV-linje til et Member-objekt:
-    public Member memberFromCsv(String line) {
+    public static Member memberFromCsv(String line) {
         String[] parts = line.split(",");
 
         int memberId = Integer.parseInt(parts[0]);
@@ -16,6 +16,9 @@ public class Mapper {
 
         return new Member(name, memberId);
 
+    }
+
+    public static Movie movieFromCsv(String line) {
     }
 
 
@@ -28,7 +31,7 @@ public class Mapper {
     // ---------- Book: identifier,title, creator,pages ----------
 
     //Konverterer en CSV-linje til et Book-objekt:
-    public Book bookFromCsv(String line) {
+    public static Book bookFromCsv(String line) {
         String[] parts = line.split(",");
 
         String identifier = parts[0];
@@ -51,7 +54,7 @@ public class Mapper {
     // ---------- AudioBook: identifier, title, creator, audioBookLength ----------
 
     //Konverterer en CSV-linje til et AudioBook-objekt:
-    public AudioBook audioBookFromCsv(String line) {
+    public static AudioBook audioBookFromCsv(String line) {
         String[] parts = line.split(delimiter);
 
         String identifier = parts[0];
@@ -76,7 +79,7 @@ public class Mapper {
     // ---------- VideoGame: identifier, title, creator, platform) ----------
 
     //Konverterer en CSV-linje til et VideoGame-objekt:
-    public VideoGame videoGameFromCsv(String line) {
+    public static VideoGame videoGameFromCsv(String line) {
         String[] parts = line.split(delimiter);
 
         String identifier = parts[0];
@@ -102,7 +105,7 @@ public class Mapper {
     // derfor får metoden library med
 
     //Konverterer en CSV-linje til et Loan-objekt:
-    public Loan loanFromCsv(String line, Library library) {
+    public static Loan loanFromCsv(String line, Library library) {
         String[] parts = line.split(delimiter);
 
         Member member = library.getMember(Integer.parseInt(parts[0]));
