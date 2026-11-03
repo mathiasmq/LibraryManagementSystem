@@ -1,6 +1,6 @@
 import java.time.LocalDate;
 
-public class Loan {
+public class Loan implements Comparable<Loan> {
 
     // Gemmer materialet, medlemmet og datoen for lånet
     private final Resource resource;
@@ -33,6 +33,11 @@ public class Loan {
     // Finder afleveringsdatoen ved at lægge 14 dage til lånedatoen
     public LocalDate getDueDate() {
         return dueDate;
+    }
+
+    @Override
+    public int compareTo(Loan other) {
+        return this.dueDate.compareTo(other.dueDate);
     }
 
     // Tjekker om afleveringsdatoen er overskredet
