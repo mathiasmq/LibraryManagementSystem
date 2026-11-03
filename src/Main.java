@@ -5,7 +5,7 @@
     Library library = new Library(loanPolicy);
 
 
-// Her opretter vi ConsoleUI og giver den adgang til biblioteket
+// Her opretter vi ConsoleUI og giver den adgang til biblioteket.
     ConsoleUI consoleUI = new ConsoleUI(library);
 
 // Vi opretter lister med bøger, film, videospil og lydbøger og tilføjer dem til biblioteket
