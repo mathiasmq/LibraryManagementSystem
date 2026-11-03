@@ -25,6 +25,10 @@ public class Library {
         members.add(member);
     }
 
+    public void addLoan (Loan loan) {
+        loans.add(loan);
+    }
+
     // Getters
 // Henter array listen med alle medlemmer i biblioteket
     public List<Member> getMembers() {
