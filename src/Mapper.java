@@ -119,6 +119,7 @@ public class Mapper {
                 + loan.getResource().getIdentifier() + delimiter
                 + loan.getBorrowedDate() + delimiter
                 + loan.getDueDate();
+
     }
 
 
