@@ -83,7 +83,19 @@
 //    library.addResource(audioBook1);
 //    library.addResource(audioBook2);
 
+     // ↓ Windows path Mathias ↓
+     Path path = Path.of("C:\\Users\\HP\\Documents\\bibliotek.csv");
+
+
+     // ↓ Windows path Louise ↓
+
+
+     // ↓ Mac path Nour ↓
+
+
+     Mapper mapper = new Mapper();
      LibrarySaver librarySaver = new LibrarySaver();
+     LibraryLoader libraryLoader = new LibraryLoader(path, mapper);
 
      try {
          librarySaver.saveMembers(members, "members.csv");
@@ -95,6 +107,24 @@
      } catch (IOException e) {
          IO.println("An error occurred: " + e.getLocalizedMessage());
      }
+
+     try {
+         List<Member> loadMembers = libraryLoader.loadMembers();
+         IO.println(loadMembers);
+         List<Book> loadBooks = libraryLoader.loadBooks();
+         IO.println(loadBooks);
+         List<Movie> loadMovies = libraryLoader.loadmovies();
+         IO.println(loadMovies);
+         List<AudioBook> loadAudioBooks = libraryLoader.loadAudioBooks();
+         IO.println(loadAudioBooks);
+         List<VideoGame> loadVideoGames = libraryLoader.loadVideoGames();
+         IO.println(loadVideoGames);
+         List<Loan> loadLoans = libraryLoader.loadLoans(library);
+         IO.println(loadLoans);
+     } catch (IOException e) {
+         IO.println("An error occured: " + e.getLocalizedMessage());
+     }
+
 
 // Starter ConesoleUI så brugerne kan bruge vores system
     consoleUI.run();
