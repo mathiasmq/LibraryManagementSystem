@@ -66,7 +66,7 @@ public class LibrarySaver {
         Path path = Path.of(filename);
         try (BufferedWriter writer = Files.newBufferedWriter(path)) {
             for (Loan loan : loans) {
-                writer.write(loan.getMember().getMemberId() + delimiter + loan.getResource().getIdentifier() + delimiter + loan.getBorrowedDate() + delimiter + loan.getDueDate());
+                writer.write(loan.getResource().getIdentifier() + delimiter + loan.getMember().getMemberId() + delimiter + loan.getBorrowedDate() + delimiter + loan.getDueDate());
                 writer.newLine();
             }
         }
