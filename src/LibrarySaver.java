@@ -6,14 +6,18 @@ import java.util.List;
 
 public class LibrarySaver {
 
-    private String delimiter = ",";
+    private final Mapper mapper;
+
+    public LibrarySaver(Mapper mapper) {
+        this.mapper = mapper;
+    }
 
 
     public void saveMembers(List<Member> members, String filename) throws IOException {
         Path path = Path.of(filename);
         try (BufferedWriter writer = Files.newBufferedWriter(path)) {
             for (Member member : members) {
-                writer.write(member.getMemberId() + delimiter + member.getName()); //mapper
+                writer.write(mapper.memberToCsv(member));
                 writer.newLine();
             }
         }
@@ -23,7 +27,7 @@ public class LibrarySaver {
         Path path = Path.of(filename);
             try (BufferedWriter writer = Files.newBufferedWriter(path)) {
                 for (Book book : books) {
-                    writer.write(book.getIdentifier() + delimiter + book.getTitle() + delimiter + book.getCreator() + delimiter + book.getPages()); // mapper
+                    writer.write(mapper.bookToCsv(book));
                     writer.newLine();
                 }
         }
@@ -34,7 +38,7 @@ public class LibrarySaver {
         Path path = Path.of(filename);
         try (BufferedWriter writer = Files.newBufferedWriter(path)) {
             for (Movie movie : movies) {
-                writer.write(movie.getIdentifier() + delimiter + movie.getTitle() + delimiter + movie.getCreator() + delimiter + movie.getMovieLength() + delimiter + movie.getDirector()); //mapper
+                writer.write(mapper.movieToCsv(movie));
                 writer.newLine();
             }
 
@@ -46,7 +50,7 @@ public class LibrarySaver {
         Path path = Path.of(filename);
         try (BufferedWriter writer = Files.newBufferedWriter(path)){
             for (AudioBook audioBook : audioBooks) {
-                writer.write(audioBook.getIdentifier() + delimiter + audioBook.getTitle() + delimiter + audioBook.getCreator() + delimiter + audioBook.getAudioBookLength()); //mapper
+                writer.write(mapper.audioBookToCsv(audioBook));
                 writer.newLine();
             }
         }
@@ -56,7 +60,7 @@ public class LibrarySaver {
         Path path = Path.of(filename);
         try (BufferedWriter writer = Files.newBufferedWriter(path)) {
             for (VideoGame videoGame : videoGames) {
-                writer.write(videoGame.getIdentifier() + delimiter + videoGame.getTitle() + delimiter + videoGame.getCreator() + delimiter + videoGame.getPlatform()); //mapper
+                writer.write(mapper.videoGameToCsv(videoGame));
                 writer.newLine();
             }
         }
@@ -66,7 +70,7 @@ public class LibrarySaver {
         Path path = Path.of(filename);
         try (BufferedWriter writer = Files.newBufferedWriter(path)) {
             for (Loan loan : loans) {
-                writer.write(loan.getResource().getIdentifier() + delimiter + loan.getMember().getMemberId() + delimiter + loan.getBorrowedDate() + delimiter + loan.getDueDate());
+                writer.write(mapper.loanToCsv(loan));
                 writer.newLine();
             }
         }

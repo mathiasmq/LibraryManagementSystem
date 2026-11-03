@@ -56,7 +56,7 @@ public class Library {
     }
 
     // Finder et bestemt materiale ud fra dets titel
-    public Resource getResource(String title) {
+    public Resource getResourceByTitle(String title) {
         for (Resource resource : resources) {
             if (title.equals(resource.getTitle())) {
                 return resource;
@@ -100,7 +100,7 @@ public class Library {
             return LoanResult.MEMBER_NOT_FOUND;
         }
 
-        Resource resource = getResource(title);
+        Resource resource = getResourceByTitle(title);
 
         // Stopper hvis materialet ikke findes
         if (resource == null) {
@@ -132,7 +132,7 @@ public class Library {
 
     // Forsøger at aflevere et materiale ud fra dets titel
     public boolean returnLoan(String title) {
-        Resource resource = getResource(title);
+        Resource resource = getResourceByTitle(title);
 
         // Stopper hvis materialet ikke findes
         if (resource == null) {
