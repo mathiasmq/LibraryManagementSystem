@@ -20,7 +20,7 @@ public class LibraryLoader {
         try (BufferedReader reader = Files.newBufferedReader(path)) {
             String line;
             while ((line = reader.readLine()) != null) {
-                Member member = Mapper.memberFromCsv(line);
+                Member member = mapper.memberFromCsv(line);
                 members.add(member);
             }
         }
@@ -32,7 +32,7 @@ public class LibraryLoader {
         try (BufferedReader reader = Files.newBufferedReader(path)) {
             String line;
             while ((line = reader.readLine()) != null) {
-                Book book = Mapper.bookFromCsv(line);
+                Book book = mapper.bookFromCsv(line);
                 books.add(book);
             }
         }
@@ -44,7 +44,7 @@ public class LibraryLoader {
         try (BufferedReader reader = Files.newBufferedReader(path)) {
             String line;
             while ((line = reader.readLine()) != null) {
-                Movie movie = Mapper.movieFromCsv(line);
+                Movie movie = mapper.movieFromCsv(line);
                 movies.add(movie);
             }
         }
@@ -56,7 +56,7 @@ public class LibraryLoader {
         try (BufferedReader reader = Files.newBufferedReader(path)) {
             String line;
             while ((line = reader.readLine()) != null) {
-                AudioBook audioBook = Mapper.audioBookFromCsv(line);
+                AudioBook audioBook = mapper.audioBookFromCsv(line);
                 audioBooks.add(audioBook);
             }
         }
@@ -68,7 +68,7 @@ public class LibraryLoader {
         try (BufferedReader reader = Files.newBufferedReader(path)) {
             String line;
             while ((line = reader.readLine()) != null) {
-                VideoGame videoGame = Mapper.videoGameFromCsv(line);
+                VideoGame videoGame = mapper.videoGameFromCsv(line);
                 videoGames.add(videoGame);
             }
         }
@@ -80,7 +80,7 @@ public class LibraryLoader {
         try (BufferedReader reader = Files.newBufferedReader(path)) {
             String line;
             while ((line = reader.readLine()) != null) {
-                Loan loan = Mapper.loanFromCsv(line, library);
+                Loan loan = mapper.loanFromCsv(line, library);
                 loans.add(loan);
             }
         }
