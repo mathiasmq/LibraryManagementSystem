@@ -122,5 +122,25 @@ public class Mapper {
 
     }
 
+    // ---------- Movie: identifier,title,creator,movie length, director ----------
+
+    public Movie movieFromCsv(String line) {
+        String[] parts = line.split(delimiter);
+
+        String identifier = parts[0];
+        String title = parts[1];
+        String creator = parts[2];
+        int movieLength = Integer.parseInt(parts[3]);
+        String director = parts[4];
+
+        return new Movie(identifier, title, creator, movieLength, director);
+
+
+    }
+
+    public String movieToCsv(Movie movie) {
+        return movie.getIdentifier() + delimiter + movie.getTitle() + delimiter + movie.getCreator() + delimiter + movie.getMovieLength() + delimiter + movie.getDirector();
+    }
+
 
 }
