@@ -6,17 +6,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LibraryLoader {
-    private final Path path;
     private final Mapper mapper;
 
-    public LibraryLoader(Path path, Mapper mapper) {
-        this.path = path;
+    public LibraryLoader(Mapper mapper) {
         this.mapper = mapper;
 
     }
 
-    public List<Member> loadMembers() throws IOException {
+    public List<Member> loadMembers(String filename) throws IOException {
         List<Member> members = new ArrayList<>();
+        Path path = Path.of(filename);
         try (BufferedReader reader = Files.newBufferedReader(path)) {
             String line;
             while ((line = reader.readLine()) != null) {
@@ -27,8 +26,9 @@ public class LibraryLoader {
         return members;
     }
 
-    public List<Book> loadBooks() throws IOException {
+    public List<Book> loadBooks(String filename) throws IOException {
         List<Book> books = new ArrayList<>();
+        Path path = Path.of(filename);
         try (BufferedReader reader = Files.newBufferedReader(path)) {
             String line;
             while ((line = reader.readLine()) != null) {
@@ -39,8 +39,9 @@ public class LibraryLoader {
         return books;
     }
 
-    public List<Movie> loadMovies() throws IOException {
+    public List<Movie> loadMovies(String filename) throws IOException {
         List<Movie> movies = new ArrayList<>();
+        Path path = Path.of(filename);
         try (BufferedReader reader = Files.newBufferedReader(path)) {
             String line;
             while ((line = reader.readLine()) != null) {
@@ -51,8 +52,9 @@ public class LibraryLoader {
         return movies;
     }
 
-    public List<AudioBook> loadAudioBooks() throws IOException {
+    public List<AudioBook> loadAudioBooks(String filename) throws IOException {
         List<AudioBook> audioBooks = new ArrayList<>();
+        Path path = Path.of(filename);
         try (BufferedReader reader = Files.newBufferedReader(path)) {
             String line;
             while ((line = reader.readLine()) != null) {
@@ -63,8 +65,9 @@ public class LibraryLoader {
         return audioBooks;
     }
 
-    public List<VideoGame> loadVideoGames() throws IOException {
+    public List<VideoGame> loadVideoGames(String filename) throws IOException {
         List<VideoGame> videoGames = new ArrayList<>();
+        Path path = Path.of(filename);
         try (BufferedReader reader = Files.newBufferedReader(path)) {
             String line;
             while ((line = reader.readLine()) != null) {
@@ -75,16 +78,17 @@ public class LibraryLoader {
         return videoGames;
     }
 
-    public List<Loan> loadLoans(Library library) throws IOException {
-        List<Loan> loans = new ArrayList<>();
+    public List<LoanId> loadLoans(String filename) throws IOException {
+        List<LoanId> loansWithId = new ArrayList<>();
+        Path path = Path.of(filename);
         try (BufferedReader reader = Files.newBufferedReader(path)) {
             String line;
             while ((line = reader.readLine()) != null) {
-                Loan loan = mapper.loanFromCsv(line, library);
-                loans.add(loan);
+                LoanId loanId = mapper.loanWithIdFromCsv(line);
+                loansWithId.add(loanId);
             }
         }
-        return loans;
+        return loansWithId;
     }
 
 }
