@@ -28,21 +28,17 @@ void main(String[] args) {
             library.addMember(member);
         }
 
-        for (Book book : loadBooks) {
-            library.addResource(book);
+        List<Resource> resources = new ArrayList<>();
+
+        resources.addAll(loadBooks);
+        resources.addAll(loadMovies);
+        resources.addAll(loadAudioBooks);
+        resources.addAll(loadVideoGames);
+
+        for (Resource resource : resources) {
+            library.addResource(resource);
         }
 
-        for (Movie movie : loadMovies) {
-            library.addResource(movie);
-        }
-
-        for (AudioBook audioBook : loadAudioBooks) {
-            library.addResource(audioBook);
-        }
-
-        for (VideoGame videoGame : loadVideoGames) {
-            library.addResource(videoGame);
-        }
 
         List<LoanId> loadLoans = libraryLoader.loadLoans("loans.csv");
 
