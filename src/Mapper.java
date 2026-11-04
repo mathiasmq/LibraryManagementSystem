@@ -1,4 +1,5 @@
 import java.time.LocalDate;
+import java.util.List;
 
 public class Mapper {
 
@@ -18,8 +19,6 @@ public class Mapper {
 
     }
 
-    public static Movie movieFromCsv(String line) {
-    }
 
 
     //Konverterer et Member-objekt til en CSV-linje:
@@ -105,16 +104,16 @@ public class Mapper {
     // derfor får metoden library med
 
     //Konverterer en CSV-linje til et Loan-objekt:
-    public Loan loanFromCsv(String line, Library library) {
-        String[] parts = line.split(delimiter);
-
-        Member member = library.getMember(Integer.parseInt(parts[0]));
-        Resource resource = library.getResourceByIdentifier(parts[1]);
-        LocalDate borrowedDate = LocalDate.parse(parts[2]);
-        LocalDate dueDate = LocalDate.parse(parts[3]);
-
-        return new Loan(resource, member, borrowedDate, dueDate);
-    }
+//    public Loan loanFromCsv(String line) {
+//        String[] parts = line.split(delimiter);
+//
+//        Member member = Integer.parseInt(parts[0]);
+//        Resource resource = parts[1];
+//        LocalDate borrowedDate = LocalDate.parse(parts[2]);
+//        LocalDate dueDate = LocalDate.parse(parts[3]);
+//
+//        return new Loan(member, resource, borrowedDate, dueDate);
+//    }
 
     //Konverterer et Loan-objekt til en CSV-linje:
     public String loanToCsv(Loan loan) {
