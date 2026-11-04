@@ -6,6 +6,7 @@ public class ResourceCreatorComparator implements Comparator<Resource> {
     public int compare(Resource resource1, Resource resource2) {
         return resource1.getCreator().compareTo(resource2.getCreator());
 
+
     }
 
 
