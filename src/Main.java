@@ -32,6 +32,7 @@ void main(String[] args) {
             library.addResource(book);
         }
 
+
         for (Movie movie : loadMovies) {
             library.addResource(movie);
         }
@@ -60,7 +61,7 @@ void main(String[] args) {
     ConsoleUI consoleUI = new ConsoleUI(library);
 
     consoleUI.run();
-
+     Path path = Path.of("/Users/nourelsayed/Documents/bibliotek.csv");
 
 //// Vi opretter lister med bøger, film, videospil og lydbøger og tilføjer dem til biblioteket
 //    List<Book> books = new ArrayList<>(List.of(
