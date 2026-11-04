@@ -23,14 +23,16 @@ public class LibrarySaverTest {
         LibrarySaver librarySaver = new LibrarySaver(mapper);
 
         //Act
-        librarySaver.saveMembers(members, "members.csv");
+        librarySaver.saveMembers(members, "test-members.csv");
 
         //Assert
-        String expected = """
-              
-                """;
-        String actual = Files.readString(Path.of("members.csv"));
-        assertEquals(expected, actual);
+        var expected = """
+               111,Thorkild Hansen
+               222,Lise Andersen
+               333,Rojin Atci
+               """;
+        var actual = Files.readString(Path.of("test-members.csv"));
+        assertSame(expected, actual);
     }
 
     @Test
@@ -49,7 +51,9 @@ public class LibrarySaverTest {
 
         //Assert
         String expected = """
-
+                9781492072508,Think Java,Allan B. Downey,150
+                9788763851664,Omrids,Rachel Cusk,200
+                9780062316097,Sapiens,Yuval Noah Harari,400
                 """;
         String actual = Files.readString(Path.of("test-books.csv"));
         assertEquals(expected, actual);
@@ -70,10 +74,10 @@ public class LibrarySaverTest {
 
         //Assert
         String expected = """
-
-
+                111,9781492072508,2026-11-03,2026-12-03
                 """;
         String actual = Files.readString(Path.of("test-loans.csv"));
         assertEquals(expected, actual);
     }
+
 }

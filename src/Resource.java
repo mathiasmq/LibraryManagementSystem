@@ -26,9 +26,4 @@ public String getIdentifier () {
     public int compareTo(Resource otherResource) {
         return identifier.compareTo(otherResource.identifier);
     }
-
-    @Override
-    public String toString() {
-    return getCreator() + getIdentifier();
-    }
 }
