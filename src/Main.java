@@ -1,68 +1,65 @@
- void main(String[] args) {
+void main(String[] args) {
 
 // Vi opretter biblioteket
     LoanPolicy loanPolicy = new StandardLoanPolicy();
     Library library = new Library(loanPolicy);
 
-     Mapper mapper = new Mapper();
-     LibraryLoader libraryLoader = new LibraryLoader(mapper);
+    Mapper mapper = new Mapper();
+    LibraryLoader libraryLoader = new LibraryLoader(mapper);
 
-     String libraryPath = args[0];
+    String libraryPath = args[0];
 
-     //Medlemmer og materialer hentes fra csv-filerne
+    //Medlemmer og materialer hentes fra csv-filerne
 
-     try {
-         List<Member> loadMembers = libraryLoader.loadMembers("members.csv");
+    try {
+        List<Member> loadMembers = libraryLoader.loadMembers("members.csv");
 
-         List<Book> loadBooks = libraryLoader.loadBooks("books.csv");
+        List<Book> loadBooks = libraryLoader.loadBooks("books.csv");
 
-         List<Movie> loadMovies = libraryLoader.loadMovies("movies.csv");
+        List<Movie> loadMovies = libraryLoader.loadMovies("movies.csv");
 
-         List<AudioBook> loadAudioBooks = libraryLoader.loadAudioBooks("audiobooks.csv");
+        List<AudioBook> loadAudioBooks = libraryLoader.loadAudioBooks("audiobooks.csv");
 
-         List<VideoGame> loadVideoGames = libraryLoader.loadVideoGames("videogames.csv");
+        List<VideoGame> loadVideoGames = libraryLoader.loadVideoGames("videogames.csv");
 
-         // De tlføjes til biblioteket
+        // De tlføjes til biblioteket
 
-         for (Member member : loadMembers) {
-             library.addMember(member);
-         }
+        for (Member member : loadMembers) {
+            library.addMember(member);
+        }
 
-         for (Book book : loadBooks) {
-             library.addResource(book);
-         }
+        for (Book book : loadBooks) {
+            library.addResource(book);
+        }
 
-         for (Movie movie : loadMovies) {
-             library.addResource(movie);
-         }
+        for (Movie movie : loadMovies) {
+            library.addResource(movie);
+        }
 
-         for (AudioBook audioBook : loadAudioBooks) {
-             library.addResource(audioBook);
-         }
+        for (AudioBook audioBook : loadAudioBooks) {
+            library.addResource(audioBook);
+        }
 
-         for (VideoGame videoGame : loadVideoGames) {
-             library.addResource(videoGame);
-         }
+        for (VideoGame videoGame : loadVideoGames) {
+            library.addResource(videoGame);
+        }
 
-//         List<Loan> loadLoans = libraryLoader.loadLoans(libraryPath + "loans.csv");
-//         IO.println(loadLoans);
-//
-//         for (Loan loan : loadLoans) {
-//             library.addLoan(loan);
-//         }
+        List<LoanId> loadLoans = libraryLoader.loadLoans("loans.csv");
 
-     } catch (IOException e) {
-         IO.println("An error occured: " + e.getLocalizedMessage());
-     }
+        for (LoanId loanWithId : loadLoans) {
+            Member member = library.getMember(loanWithId.getMemberId());
+            Resource resource = library.getResourceByIdentifier(loanWithId.getResourceIdentifier());
+            Loan loan = new Loan(resource, member, loanWithId.getBorrowedDate(), loanWithId.getDueDate());
+            library.addLoan(loan);
+        }
 
-            ConsoleUI consoleUI = new ConsoleUI(library);
+    } catch (IOException e) {
+        IO.println("An error occured: " + e.getLocalizedMessage());
+    }
 
-            consoleUI.run();
+    ConsoleUI consoleUI = new ConsoleUI(library);
 
-
-
-
-
+    consoleUI.run();
 
 
 //// Vi opretter lister med bøger, film, videospil og lydbøger og tilføjer dem til biblioteket

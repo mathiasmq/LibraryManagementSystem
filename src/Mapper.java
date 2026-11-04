@@ -100,20 +100,19 @@ public class Mapper {
 
     // ---------- Loan: resource,member,borrowedDate,dueDate ----------
 
-    // Lånet skal finde det rigtige medlem og materiale i biblioteket,
-    // derfor får metoden library med
+
 
     //Konverterer en CSV-linje til et Loan-objekt:
-//    public Loan loanFromCsv(String line) {
-//        String[] parts = line.split(delimiter);
-//
-//        Member member = Integer.parseInt(parts[0]);
-//        Resource resource = parts[1];
-//        LocalDate borrowedDate = LocalDate.parse(parts[2]);
-//        LocalDate dueDate = LocalDate.parse(parts[3]);
-//
-//        return new Loan(member, resource, borrowedDate, dueDate);
-//    }
+    public LoanId loanWithIdFromCsv(String line) {
+        String[] parts = line.split(delimiter);
+
+        int memberId = Integer.parseInt(parts[0]);
+        String resourceIdentifier = parts[1];
+        LocalDate borrowedDate = LocalDate.parse(parts[2]);
+        LocalDate dueDate = LocalDate.parse(parts[3]);
+
+        return new LoanId(resourceIdentifier, memberId, borrowedDate, dueDate);
+    }
 
     //Konverterer et Loan-objekt til en CSV-linje:
     public String loanToCsv(Loan loan) {

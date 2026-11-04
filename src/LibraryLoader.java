@@ -78,17 +78,17 @@ public class LibraryLoader {
         return videoGames;
     }
 
-//    public List<Loan> loadLoans(String filename) throws IOException {
-//        List<Loan> loans = new ArrayList<>();
-//        Path path = Path.of(filename);
-//        try (BufferedReader reader = Files.newBufferedReader(path)) {
-//            String line;
-//            while ((line = reader.readLine()) != null) {
-//                Loan loan = mapper.loanFromCsv(line);
-//                loans.add(loan);
-//            }
-//        }
-//        return loans;
-//    }
+    public List<LoanId> loadLoans(String filename) throws IOException {
+        List<LoanId> loansWithId = new ArrayList<>();
+        Path path = Path.of(filename);
+        try (BufferedReader reader = Files.newBufferedReader(path)) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                LoanId loanId = mapper.loanWithIdFromCsv(line);
+                loansWithId.add(loanId);
+            }
+        }
+        return loansWithId;
+    }
 
 }
