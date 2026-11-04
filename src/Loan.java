@@ -1,6 +1,6 @@
 import java.time.LocalDate;
 
-public class Loan {
+public class Loan implements  Comparable<Loan> {
 
     // Gemmer materialet, medlemmet og datoen for lånet
     private final Resource resource;
@@ -15,6 +15,13 @@ public class Loan {
         this.borrowedDate = borrowedDate;
         this.dueDate = dueDate;
     }
+
+    @Override
+    public int compareTo(Loan loanOther) {
+        return dueDate.compareTo(loanOther.dueDate);
+
+    }
+
 
     // Henter det materiale som er blevet lånt
     public Resource getResource() {

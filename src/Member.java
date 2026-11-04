@@ -1,4 +1,4 @@
-public class Member {
+public class Member implements Comparable<Member> {
 // Her gemmer vi medlemmets navn og ID
     final private String name;
     final private int memberId;
@@ -7,6 +7,12 @@ public class Member {
     public Member(String name, int memberId){
         this.name = name;
         this.memberId = memberId;
+    }
+
+    @Override
+    public int compareTo(Member memberOther) {
+        return Integer.compare(memberId, memberOther.memberId);
+
     }
 
 // Getters
