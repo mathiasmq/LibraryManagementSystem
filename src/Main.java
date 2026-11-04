@@ -39,6 +39,15 @@ void main(String[] args) {
             library.addResource(resource);
         }
 
+        // Sorterer materialerne efter creator og viser dem(Collections del):
+        Collections.sort(resources, new ResourceCreatorComparator());
+
+        IO.println("Materials sorted by creatoe");
+        for (Resource resource : resources) {
+            IO.println(resource);
+            IO.println();
+        }
+
 
         List<LoanId> loadLoans = libraryLoader.loadLoans("loans.csv");
 
@@ -56,21 +65,7 @@ void main(String[] args) {
     ConsoleUI consoleUI = new ConsoleUI(library);
 
     consoleUI.run();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    Path path = Path.of("/Users/nourelsayed/Documents/bibliotek.csv");
 
 //// Vi opretter lister med bøger, film, videospil og lydbøger og tilføjer dem til biblioteket
 //    List<Book> books = new ArrayList<>(List.of(
