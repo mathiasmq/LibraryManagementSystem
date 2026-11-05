@@ -19,6 +19,7 @@ public class LibrarySaverTest {
                 new Member("Thorkild Hansen", 111),
                 new Member("Lise Andersen", 222),
                 new Member("Rojin Atci", 333)));
+
         Mapper mapper = new Mapper();
         LibrarySaver librarySaver = new LibrarySaver(mapper);
 
@@ -31,8 +32,8 @@ public class LibrarySaverTest {
                222,Lise Andersen
                333,Rojin Atci
                """;
-        var actual = Files.readString(Path.of("test-members.csv"));
-        assertSame(expected, actual);
+        var actual = Files.readString(Path.of("test-members.csv")).replace("\r\n", "\n"); //For når filerne gemmes på windows-computer er linjeskiftene \r\n og ikke \n, replace erstatter \r\n med \n
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -50,12 +51,12 @@ public class LibrarySaverTest {
         librarySaver.saveBooks(books, "test-books.csv");
 
         //Assert
-        String expected = """
+        var expected = """
                 9781492072508,Think Java,Allan B. Downey,150
                 9788763851664,Omrids,Rachel Cusk,200
                 9780062316097,Sapiens,Yuval Noah Harari,400
                 """;
-        String actual = Files.readString(Path.of("test-books.csv"));
+        var actual = Files.readString(Path.of("test-books.csv")).replace("\r\n", "\n");
         assertEquals(expected, actual);
 
     }
@@ -73,10 +74,10 @@ public class LibrarySaverTest {
         librarySaver.saveLoans(loans, "test-loans.csv");
 
         //Assert
-        String expected = """
+        var expected = """
                 111,9781492072508,2026-11-03,2026-12-03
                 """;
-        String actual = Files.readString(Path.of("test-loans.csv"));
+        var actual = Files.readString(Path.of("test-loans.csv")).replace("\r\n", "\n");
         assertEquals(expected, actual);
     }
 
